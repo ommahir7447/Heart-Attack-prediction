@@ -7,3 +7,8 @@ scikit-learn
 matplotlib
 seaborn
 joblib
+plotly
+pymongo
+bcrypt
+pytest
+flake8
