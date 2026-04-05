@@ -5,20 +5,7 @@ from utils.db import get_user_predictions
 
 
 def render_history():
-    st.markdown("""
-    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-         border-radius:12px; padding:1.5rem 2rem; margin-bottom:1.5rem;">
-        <div style="display:flex; align-items:center; gap:0.8rem;">
-            <div style="font-size:2rem;">📖</div>
-            <div>
-                <h1 style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:700; margin:0; color:#e2e8f0;">
-                    Assessment History</h1>
-                <p style="color:#64748b; font-size:0.85rem; margin:0.15rem 0 0 0;">
-                    Review, analyse, and export your past cardiac risk predictions</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08); border-radius:12px; padding:1.5rem 2rem; margin-bottom:1.5rem;"><h1 style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:700; margin:0; color:#e2e8f0;">Assessment History</h1><p style="color:#64748b; font-size:0.85rem; margin:0.15rem 0 0;">Review, analyse, and export your past cardiac risk predictions</p></div>""", unsafe_allow_html=True)
 
     predictions = get_user_predictions(st.session_state.user_email)
 
@@ -26,7 +13,7 @@ def render_history():
         st.markdown("""
         <div style="background:rgba(30,41,59,0.3); border:1px dashed rgba(148,163,184,0.15);
              border-radius:12px; padding:3rem; text-align:center; margin-top:1rem;">
-            <div style="font-size:3rem; margin-bottom:0.8rem;">📭</div>
+            <div style="font-size:1.5rem; margin-bottom:0.8rem; color:#64748b;">—</div>
             <div style="font-size:1rem; color:#e2e8f0; font-weight:600;">No Assessments Yet</div>
             <div style="color:#64748b; margin-top:0.3rem;">Head to the Dashboard and save your first cardiac risk assessment.</div>
         </div>
@@ -38,15 +25,14 @@ def render_history():
     avg_prob = sum(p["prediction_proba"] for p in predictions) / total
 
     sc1, sc2, sc3 = st.columns(3)
-    for col, icon, val, label in [
-        (sc1, "📊", str(total), "Total Assessments"),
-        (sc2, "🚨", str(high_risk), "High Risk Findings"),
-        (sc3, "📈", f"{avg_prob:.1f}%", "Average Risk Score"),
+    for col, val, label in [
+        (sc1, str(total), "Total Assessments"),
+        (sc2, str(high_risk), "High Risk Findings"),
+        (sc3, f"{avg_prob:.1f}%", "Average Risk Score"),
     ]:
         col.markdown(f"""
         <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
              border-radius:10px; padding:1.2rem; text-align:center;">
-            <div style="font-size:1.6rem;">{icon}</div>
             <div style="font-size:1.8rem; font-weight:800; color:#e2e8f0; margin-top:0.2rem;">{val}</div>
             <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
         </div>
@@ -58,7 +44,7 @@ def render_history():
     st.markdown("""
     <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
          margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        📈 Risk Score Trend
+        Risk Score Trend
     </div>
     """, unsafe_allow_html=True)
 
@@ -68,10 +54,10 @@ def render_history():
     fig_line = go.Figure()
     fig_line.add_trace(go.Scatter(
         x=dates, y=probas, mode='lines+markers',
-        line=dict(color='#8b5cf6', width=2.5, shape='spline'),
+        line=dict(color='#0ea5e9', width=2.5, shape='spline'),
         marker=dict(size=8, color=probas, colorscale=[[0, '#10b981'], [0.5, '#f59e0b'], [1, '#ef4444']],
-                    line=dict(color='#0f172a', width=1.5)),
-        fill='tozeroy', fillcolor='rgba(139,92,246,0.08)', name='Risk %'
+                    line=dict(color='#0b1120', width=1.5)),
+        fill='tozeroy', fillcolor='rgba(14,165,233,0.07)', name='Risk %'
     ))
     fig_line.add_hline(y=50, line_dash="dot", line_color="rgba(239,68,68,0.4)",
                        annotation_text="Risk Threshold (50%)",
@@ -90,13 +76,13 @@ def render_history():
     st.markdown("""
     <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
          margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        📋 Assessment Log
+        Assessment Log
     </div>
     """, unsafe_allow_html=True)
 
     history_rows = []
     for p in predictions:
-        risk_label = "🔴 High Risk" if p["prediction_class"] == 1 else "🟢 Low Risk"
+        risk_label = "High Risk" if p["prediction_class"] == 1 else "Low Risk"
         history_rows.append({
             "Timestamp": p["timestamp"].strftime("%Y-%m-%d %H:%M"),
             "Risk %": f"{p['prediction_proba']:.1f}%",
@@ -121,7 +107,7 @@ def render_history():
     } for p in predictions]).to_csv(index=False).encode("utf-8")
 
     st.download_button(
-        label="📥  Export Full History as CSV",
+        label="Export Full History as CSV",
         data=csv,
         file_name="heartguard_history.csv",
         mime="text/csv",

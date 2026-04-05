@@ -25,10 +25,11 @@ def save_prediction(user_email, input_data, prediction_proba, prediction_class):
     get_predictions_collection().insert_one({
         "user_email": user_email,
         "timestamp": datetime.datetime.now(),
-        "input_data": input_data,
-        "prediction_proba": prediction_proba,
-        "prediction_class": prediction_class
+        "input_data": {k: float(v) if hasattr(v, 'item') else v for k, v in input_data.items()},
+        "prediction_proba": float(prediction_proba),
+        "prediction_class": int(prediction_class)
     })
+
 
 def get_user_predictions(user_email):
     return list(get_predictions_collection().find({"user_email": user_email}).sort("timestamp", -1))

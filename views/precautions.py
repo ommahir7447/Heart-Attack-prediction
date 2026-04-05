@@ -2,20 +2,7 @@ import streamlit as st
 from utils.db import get_health_profile
 
 def render_precautions():
-    st.markdown("""
-    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-         border-radius:12px; padding:1.5rem 2rem; margin-bottom:1.5rem;">
-        <div style="display:flex; align-items:center; gap:0.8rem;">
-            <div style="font-size:2rem;">🛡️</div>
-            <div>
-                <h1 style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:700; margin:0; color:#e2e8f0;">
-                    Precautions & Recommendations</h1>
-                <p style="color:#64748b; font-size:0.85rem; margin:0.15rem 0 0 0;">
-                    Personalized health guidance based on your profile and cardiac risk assessment</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08); border-radius:12px; padding:1.5rem 2rem; margin-bottom:1.5rem;"><h1 style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:700; margin:0; color:#e2e8f0;">Precautions &amp; Recommendations</h1><p style="color:#64748b; font-size:0.85rem; margin:0.15rem 0 0;">Personalized health guidance based on your profile and cardiac risk assessment</p></div>""", unsafe_allow_html=True)
 
     profile = get_health_profile(st.session_state.user_email) or {}
     conditions = profile.get("conditions", [])
@@ -27,13 +14,13 @@ def render_precautions():
     risk_pct = st.session_state.get("last_risk_pct", 0.0)
 
     if not profile:
-        st.warning("⚠️ Please fill in your **My Health Profile** first so we can personalise your recommendations.")
+        st.warning("Please fill in your **My Health Profile** first so we can personalise your recommendations.")
 
     # ── EMERGENCY SIGNS ──
     st.markdown("""
     <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
          margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        🚨 Warning Signs — Call Emergency Immediately
+        Warning Signs — Call Emergency Immediately
     </div>
     """, unsafe_allow_html=True)
     emergency_signs = [
@@ -49,7 +36,7 @@ def render_precautions():
         col.markdown(f"""
         <div style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.15);
              border-radius:10px; padding:0.9rem 1rem; margin-bottom:0.5rem; display:flex; align-items:flex-start; gap:0.7rem;">
-            <div style="font-size:1.3rem; margin-top:0.05rem;">🚨</div>
+            <div style="font-size:1rem; margin-top:0.05rem; color:#ef4444; font-weight:700;">!</div>
             <div>
                 <div style="font-weight:600; color:#ef4444; font-size:0.85rem;">{sign}</div>
                 <div style="color:#94a3b8; font-size:0.8rem; margin-top:0.15rem; line-height:1.5;">{desc}</div>
@@ -63,7 +50,7 @@ def render_precautions():
     st.markdown("""
     <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
          margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        🥗 Diet Recommendations
+        Diet Recommendations
     </div>
     """, unsafe_allow_html=True)
     diet_tips = [
@@ -94,25 +81,25 @@ def render_precautions():
     st.markdown("""
     <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
          margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        🏃 Exercise Guidelines
+        Exercise Guidelines
     </div>
     """, unsafe_allow_html=True)
 
     if risk_pct >= 60:
-        exercise_note = "⚠️ High cardiac risk detected. **Only light, supervised exercise** until you consult your cardiologist."
-        exercises = [("🚶 Slow Walking", "15–20 min/day on flat ground. Stop if you feel chest pain."),
-                     ("🧘 Seated Yoga", "Gentle stretching and pranayama breathing. 15 min morning and evening."),
-                     ("🚫 Avoid", "Strenuous gym workouts, running, heavy lifting until cleared by doctor.")]
+        exercise_note = "High cardiac risk detected. **Only light, supervised exercise** until you consult your cardiologist."
+        exercises = [("Slow Walking", "15–20 min/day on flat ground. Stop if you feel chest pain."),
+                     ("Seated Yoga", "Gentle stretching and pranayama breathing. 15 min morning and evening."),
+                     ("Avoid Strenuous Activity", "Strenuous gym workouts, running, heavy lifting until cleared by doctor.")]
     elif activity == "Sedentary":
         exercise_note = "Start gradually. Even light movement every day significantly reduces cardiac risk."
-        exercises = [("🚶 Brisk Walking", "30 min/day, 5 days/week. Start at a comfortable pace."),
-                     ("🏊 Swimming", "Excellent low-impact cardio, 30 min 3x/week."),
-                     ("🧘 Yoga / Pranayama", "Daily breathing exercises reduce blood pressure and stress.")]
+        exercises = [("Brisk Walking", "30 min/day, 5 days/week. Start at a comfortable pace."),
+                     ("Swimming", "Excellent low-impact cardio, 30 min 3x/week."),
+                     ("Yoga / Pranayama", "Daily breathing exercises reduce blood pressure and stress.")]
     else:
         exercise_note = "Maintain your current routine. Heart health improves with consistent moderate activity."
-        exercises = [("🚴 Cycling", "30–45 min, 4–5x/week. Moderate intensity."),
-                     ("🏋️ Strength Training", "2–3x/week, light weights, focus on form."),
-                     ("🧘 Meditation", "10–15 min daily reduces cortisol and inflammation.")]
+        exercises = [("Cycling", "30–45 min, 4–5x/week. Moderate intensity."),
+                     ("Strength Training", "2–3x/week, light weights, focus on form."),
+                     ("Meditation", "10–15 min daily reduces cortisol and inflammation.")]
 
     st.markdown(f"<p style='color:#94a3b8; margin-bottom:0.8rem; font-size:0.85rem;'>{exercise_note}</p>", unsafe_allow_html=True)
     ec = st.columns(3)
@@ -132,7 +119,7 @@ def render_precautions():
         st.markdown("""
         <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
              margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-            💊 Medication Reminders
+            Medication Reminders
         </div>
         """, unsafe_allow_html=True)
         med_tips = {
@@ -154,9 +141,9 @@ def render_precautions():
             <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
                  border-radius:10px; padding:0.9rem 1.1rem; margin-bottom:0.5rem;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div style="font-weight:600; color:#e2e8f0; font-size:0.85rem;">💊 {med}</div>
+                    <div style="font-weight:600; color:#e2e8f0; font-size:0.85rem;">{med}</div>
                     <div style="background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.2);
-                         border-radius:20px; padding:0.15rem 0.5rem; font-size:0.7rem; color:#67e8f9;">⏰ {info[1]}</div>
+                         border-radius:20px; padding:0.15rem 0.5rem; font-size:0.7rem; color:#67e8f9;">{info[1]}</div>
                 </div>
                 <div style="color:#94a3b8; font-size:0.8rem; margin-top:0.3rem; line-height:1.5;">{info[0]}</div>
             </div>
@@ -165,18 +152,18 @@ def render_precautions():
     # ── LIFESTYLE ALERTS ──
     alerts = []
     if smoker == "Current Smoker":
-        alerts.append(("🚬 Quit Smoking — Priority #1", "Smoking doubles heart attack risk. Nicotine patches, gum, or medications can help.", "#ef4444"))
+        alerts.append(("Quit Smoking — Priority #1", "Smoking doubles heart attack risk. Nicotine patches, gum, or medications can help.", "#ef4444"))
     if alcohol in ["Moderate", "Heavy"]:
-        alerts.append(("🍺 Reduce Alcohol", "Alcohol raises blood pressure and triglycerides. Limit to 1-2 units/day.", "#f59e0b"))
+        alerts.append(("Reduce Alcohol", "Alcohol raises blood pressure and triglycerides. Limit to 1-2 units/day.", "#f59e0b"))
     if age >= 60:
-        alerts.append(("👴 Senior Heart Care", "Get annual ECG, echocardiogram, and full lipid panel.", "#8b5cf6"))
+        alerts.append(("Senior Heart Care", "Get annual ECG, echocardiogram, and full lipid panel.", "#8b5cf6"))
 
     if alerts:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
         <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
              margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-            ⚠️ Lifestyle Alerts
+            Lifestyle Alerts
         </div>
         """, unsafe_allow_html=True)
         for title, desc, color in alerts:
