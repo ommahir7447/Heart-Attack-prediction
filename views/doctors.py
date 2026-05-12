@@ -75,7 +75,8 @@ def render_doctors():
         """, unsafe_allow_html=True)
 
         btn_key = f"book_{doc['name'].replace(' ', '_')}_{i}"
-        if col.button(f"Book with {doc['name'].split()[1]} {doc['name'].split()[-1]}", key=btn_key, use_container_width=True):
+        short_name = doc['name'].replace("Dr. ", "", 1) if doc['name'].startswith("Dr. ") else doc['name']
+        if col.button(f"Book with {short_name}", key=btn_key, use_container_width=True):
             risk_pct = st.session_state.get("last_risk_pct", 35.0)
             book_appointment(st.session_state.user_email, doc["name"], doc["hospital"], doc["specialty"], risk_pct)
             st.success(f"Appointment requested with **{doc['name']}**! Check My Updates for the response.")

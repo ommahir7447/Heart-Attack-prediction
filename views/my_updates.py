@@ -43,7 +43,7 @@ def render_updates():
             <div class="glass-card" style="margin-bottom:0.8rem; border-left:3px solid #a78bfa;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem;">
                     <div>
-                        <div style="font-weight:700; color:#e2e8f0; font-size:0.95rem;">Dr. {note['doctor_name']}</div>
+                        <div style="font-weight:700; color:#e2e8f0; font-size:0.95rem;">{note['doctor_name']}</div>
                         <div style="color:#475569; font-size:0.78rem;">{note['hospital']} · {ts}</div>
                     </div>
                     <span style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15);
@@ -73,7 +73,7 @@ def render_updates():
             <div class="glass-card" style="margin-bottom:0.5rem; padding:0.9rem 1.2rem;
                  display:flex; justify-content:space-between; align-items:center;">
                 <div>
-                    <div style="font-weight:600; color:#e2e8f0; font-size:0.88rem;">Dr. {appt['doctor_name']}</div>
+                    <div style="font-weight:600; color:#e2e8f0; font-size:0.88rem;">{appt['doctor_name']}</div>
                     <div style="color:#475569; font-size:0.78rem;">{appt['hospital']} · {appt['specialty']} · {ts}</div>
                 </div>
                 <span style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15);

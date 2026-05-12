@@ -9,10 +9,19 @@ uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
 
 @st.cache_resource
 def init_connection():
-    return MongoClient(uri, server_api=ServerApi('1'))
+    try:
+        client = MongoClient(uri, server_api=ServerApi('1'), serverSelectionTimeoutMS=5000)
+        # Test the connection
+        client.admin.command('ping')
+        return client
+    except Exception as e:
+        st.error(f"⚠️ Could not connect to MongoDB. Please ensure MongoDB is running.\n\nError: {e}")
+        return None
 
 def get_db():
     client = init_connection()
+    if client is None:
+        st.stop()
     return client.heartguard
 
 def get_users_collection():

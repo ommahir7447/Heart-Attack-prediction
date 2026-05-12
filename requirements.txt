@@ -10,5 +10,6 @@ joblib
 plotly
 pymongo
 bcrypt
+extra-streamlit-components
 pytest
 flake8

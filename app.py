@@ -509,6 +509,7 @@ from utils.auth import login_user, signup_user, restore_session_from_cookie, get
 
 # Cookie manager MUST be instantiated at the top level (not inside functions)
 _cookie_manager = get_cookie_manager()
+st.session_state["_hg_cookie_mgr"] = _cookie_manager
 
 # Session state defaults
 for key, default in [('logged_in', False), ('user', None), ('user_email', None)]:

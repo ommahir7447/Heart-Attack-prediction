@@ -47,7 +47,20 @@ def render_dashboard():
         'fbs': fbs, 'restecg': restecg, 'thalach': thalach, 'exang': exang,
         'oldpeak': oldpeak, 'slope': slope, 'ca': ca, 'thal': thal
     }
+
+    # ── Feature engineering (must match train_model.py) ──
+    age_risk = 0 if age <= 40 else (1 if age <= 55 else (2 if age <= 70 else 3))
+    data['age_risk'] = float(age_risk)
+    data['bp_chol_interaction'] = trestbps * chol / 10000.0
+    data['hr_reserve'] = thalach / max((220 - age), 1)
+    data['st_severe'] = 1 if oldpeak >= 2.0 else 0
+    data['age_sex'] = age * sex
+    data['exercise_risk'] = exang + (oldpeak / 4.0) + (slope / 2.0)
+
     input_df = pd.DataFrame(data, index=[0])
+    # Ensure columns match the exact order used during training
+    if feature_names:
+        input_df = input_df[feature_names]
 
     prediction_proba = model.predict_proba(input_df)[0][1] * 100
     prediction = 1 if prediction_proba > 50 else 0
