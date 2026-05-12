@@ -17,22 +17,22 @@ def render_dashboard():
 
     # ── SIDEBAR INPUTS ──
     st.sidebar.markdown("<div style='height:0.5rem;'></div>", unsafe_allow_html=True)
-    st.sidebar.markdown("<p style='color:#94a3b8;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;'>Demographics</p>", unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color:#475569;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;'>Demographics</p>", unsafe_allow_html=True)
     age = st.sidebar.slider("Age", 20, 90, 50)
     sex = st.sidebar.selectbox("Sex", [0, 1], format_func=lambda x: "Male" if x == 1 else "Female")
 
-    st.sidebar.markdown("<p style='color:#94a3b8;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Symptoms</p>", unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color:#475569;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Symptoms</p>", unsafe_allow_html=True)
     cp_mapping = {0: "Typical Angina", 1: "Atypical Angina", 2: "Non-anginal Pain", 3: "Asymptomatic"}
     cp = st.sidebar.selectbox("Chest Pain Type", [0, 1, 2, 3], format_func=lambda x: cp_mapping[x])
     exang = st.sidebar.selectbox("Exercise-Induced Angina", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
 
-    st.sidebar.markdown("<p style='color:#94a3b8;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Clinical Metrics</p>", unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color:#475569;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Clinical Metrics</p>", unsafe_allow_html=True)
     trestbps = st.sidebar.slider("Resting Blood Pressure (mmHg)", 80, 200, 120)
     chol = st.sidebar.slider("Cholesterol (mg/dl)", 100, 600, 200)
     fbs = st.sidebar.selectbox("Fasting Blood Sugar > 120 mg/dl", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
     thalach = st.sidebar.slider("Max Heart Rate (bpm)", 60, 220, 150)
 
-    st.sidebar.markdown("<p style='color:#94a3b8;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Diagnostics</p>", unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color:#475569;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:1rem;'>Diagnostics</p>", unsafe_allow_html=True)
     restecg_mapping = {0: "Normal", 1: "ST-T Abnormality", 2: "LV Hypertrophy"}
     restecg = st.sidebar.selectbox("Resting ECG", [0, 1, 2], format_func=lambda x: restecg_mapping[x])
     oldpeak = st.sidebar.slider("ST Depression", 0.0, 7.0, 1.0, step=0.1)
@@ -60,15 +60,14 @@ def render_dashboard():
 
     # ── HEADER ──
     st.markdown(f"""
-    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-         border-radius:12px; padding:1.2rem 2rem; margin-bottom:1.5rem;">
+    <div class="page-header">
         <div style="display:flex; align-items:center; gap:1rem;">
-            {logo_img_tag(width=54, style="flex-shrink:0; border-radius:8px;")}
+            {logo_img_tag(width=54, style="flex-shrink:0; border-radius:10px; box-shadow: 0 0 24px rgba(52,211,153,0.1);")}
             <div>
-                <h1 style="font-family:'Sora',sans-serif; font-size:1.8rem; font-weight:800; margin:0;
-                    background:linear-gradient(135deg, #7dd3fc, #38bdf8);
+                <h1 style="font-family:'Plus Jakarta Sans',sans-serif; font-size:1.8rem; font-weight:800; margin:0;
+                    background:linear-gradient(135deg, #34d399, #a78bfa);
                     -webkit-background-clip:text; -webkit-text-fill-color:transparent;">HeartGuard AI</h1>
-                <p style="color:#64748b; font-size:0.85rem; margin:0.2rem 0 0 0;">
+                <p style="color:#475569; font-size:0.85rem; margin:0.2rem 0 0 0;">
                     Professional Cardiac Risk Stratification &amp; AI Interpretability</p>
             </div>
         </div>
@@ -92,28 +91,25 @@ def render_dashboard():
 
     with col1:
         st.markdown("""
-        <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-             margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-            Risk Assessment
-        </div>
+        <div class="section-header">Risk Assessment</div>
         """, unsafe_allow_html=True)
 
-        gauge_color = "#ef4444" if prediction_proba >= 60 else "#f59e0b" if prediction_proba >= 30 else "#10b981"
+        gauge_color = "#ef4444" if prediction_proba >= 60 else "#fbbf24" if prediction_proba >= 30 else "#34d399"
         fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=prediction_proba,
             domain={'x': [0, 1], 'y': [0, 1]},
-            number={'suffix': "%", 'font': {'size': 48, 'color': '#e2e8f0', 'family': 'Sora'}},
+            number={'suffix': "%", 'font': {'size': 48, 'color': '#e2e8f0', 'family': 'Plus Jakarta Sans'}},
             gauge={
-                'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#334155",
-                         'tickfont': {'color': '#64748b', 'size': 10}},
+                'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#1e293b",
+                         'tickfont': {'color': '#475569', 'size': 10}},
                 'bar': {'color': gauge_color, 'thickness': 0.25},
-                'bgcolor': "rgba(255,255,255,0.02)",
+                'bgcolor': "rgba(255,255,255,0.01)",
                 'borderwidth': 0,
                 'steps': [
-                    {'range': [0, 30], 'color': "rgba(16,185,129,0.1)"},
-                    {'range': [30, 60], 'color': "rgba(245,158,11,0.08)"},
-                    {'range': [60, 100], 'color': "rgba(239,68,68,0.08)"}
+                    {'range': [0, 30], 'color': "rgba(52,211,153,0.08)"},
+                    {'range': [30, 60], 'color': "rgba(251,191,36,0.06)"},
+                    {'range': [60, 100], 'color': "rgba(239,68,68,0.06)"}
                 ],
                 'threshold': {
                     'line': {'color': gauge_color, 'width': 3},
@@ -130,8 +126,8 @@ def render_dashboard():
 
         if prediction == 1:
             st.markdown("""
-            <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2);
-                 border-radius:10px; padding:0.9rem 1.1rem; margin-top:0.5rem;">
+            <div style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.15);
+                 border-radius:12px; padding:0.9rem 1.1rem; margin-top:0.5rem;">
                 <div style="font-weight:700; color:#ef4444; font-size:0.9rem;">Elevated Cardiac Risk</div>
                 <div style="color:#fca5a5; font-size:0.8rem; margin-top:0.2rem; line-height:1.5;">
                     Patient profile indicates high probability of a cardiovascular event. Immediate clinical review recommended.</div>
@@ -139,9 +135,9 @@ def render_dashboard():
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2);
-                 border-radius:10px; padding:0.9rem 1.1rem; margin-top:0.5rem;">
-                <div style="font-weight:700; color:#10b981; font-size:0.9rem;">Lower Cardiac Risk</div>
+            <div style="background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.15);
+                 border-radius:12px; padding:0.9rem 1.1rem; margin-top:0.5rem;">
+                <div style="font-weight:700; color:#34d399; font-size:0.9rem;">Lower Cardiac Risk</div>
                 <div style="color:#6ee7b7; font-size:0.8rem; margin-top:0.2rem; line-height:1.5;">
                     Patient profile indicates low acute cardiovascular risk. Continue standard preventative care.</div>
             </div>
@@ -149,10 +145,7 @@ def render_dashboard():
 
     with col2:
         st.markdown("""
-        <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-             margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-            Patient Vitals
-        </div>
+        <div class="section-header">Patient Vitals</div>
         """, unsafe_allow_html=True)
 
         r1c1, r1c2, r1c3 = st.columns(3)
@@ -166,17 +159,13 @@ def render_dashboard():
         for col_c, val, unit, label, delta, is_bad in cards:
             delta_html = ""
             if delta:
-                dc = "#ef4444" if is_bad else "#10b981"
+                dc = "#ef4444" if is_bad else "#34d399"
                 delta_html = f"<div style='font-size:0.72rem; font-weight:600; color:{dc}; margin-top:0.15rem;'>{delta}</div>"
             col_c.markdown(f"""
-            <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-                 border-radius:10px; padding:1rem; text-align:center;
-                 transition:all 0.15s ease;"
-                 onmouseover="this.style.borderColor='rgba(139,92,246,0.25)'"
-                 onmouseout="this.style.borderColor='rgba(148,163,184,0.08)'">
+            <div class="glass-card" style="text-align:center; padding:1rem;">
                 <div style="font-size:1.4rem; font-weight:800; color:#e2e8f0; margin-top:0.2rem;">
-                    {val} <span style="font-size:0.8rem; color:#64748b; font-weight:400;">{unit}</span></div>
-                <div style="font-size:0.68rem; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
+                    {val} <span style="font-size:0.8rem; color:#475569; font-weight:400;">{unit}</span></div>
+                <div style="font-size:0.68rem; color:#475569; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
                 {delta_html}
             </div>
             """, unsafe_allow_html=True)
@@ -191,17 +180,17 @@ def render_dashboard():
         ]
         for col_c, val, label in cards2:
             col_c.markdown(f"""
-            <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-                 border-radius:10px; padding:1rem; text-align:center;">
+            <div class="glass-card" style="text-align:center; padding:1rem;">
                 <div style="font-size:1.1rem; font-weight:700; color:#e2e8f0; margin-top:0.2rem;">{val}</div>
-                <div style="font-size:0.68rem; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
+                <div style="font-size:0.68rem; color:#475569; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
             </div>
             """, unsafe_allow_html=True)
 
         st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
         st.markdown("""
-        <div style="background:rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.12);
-             border-radius:8px; padding:0.8rem 1rem; font-size:0.82rem; color:#67e8f9; line-height:1.6;">
+        <div style="background:linear-gradient(135deg, rgba(52,211,153,0.04), rgba(139,92,246,0.04));
+             border:1px solid rgba(52,211,153,0.1);
+             border-radius:10px; padding:0.8rem 1rem; font-size:0.82rem; color:#6ee7b7; line-height:1.6;">
             <b>Clinical Note:</b> Risk probabilities are generated by an XGBoost ML classifier.
             These insights <em>augment</em> but do <em>not</em> replace professional diagnostic protocols.
         </div>
@@ -209,12 +198,7 @@ def render_dashboard():
 
     # ── RADAR CHART ──
     st.markdown("<div style='height:1.2rem;'></div>", unsafe_allow_html=True)
-    st.markdown("""
-    <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-         margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        Vitals vs. Healthy Baseline
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="section-header">Vitals vs. Healthy Baseline</div>""", unsafe_allow_html=True)
 
     radar_col1, radar_col2 = st.columns([2, 1])
     with radar_col1:
@@ -232,24 +216,24 @@ def render_dashboard():
         fig_radar.add_trace(go.Scatterpolar(
             r=baseline + [baseline[0]], theta=categories + [categories[0]],
             fill='toself', name='Healthy Baseline',
-            line=dict(color='#10b981', width=2),
-            fillcolor='rgba(16,185,129,0.08)'
+            line=dict(color='#34d399', width=2),
+            fillcolor='rgba(52,211,153,0.06)'
         ))
         fig_radar.add_trace(go.Scatterpolar(
             r=patient_norm + [patient_norm[0]], theta=categories + [categories[0]],
             fill='toself', name='Patient Profile',
-            line=dict(color='#0ea5e9', width=2.5),
-            fillcolor='rgba(14,165,233,0.12)'
+            line=dict(color='#a78bfa', width=2.5),
+            fillcolor='rgba(139,92,246,0.1)'
         ))
         fig_radar.update_layout(
             polar=dict(
-                bgcolor='rgba(11,17,32,0.01)',
-                radialaxis=dict(visible=True, range=[0, 180], gridcolor='rgba(148,163,184,0.06)',
-                                tickfont=dict(color='#475569', size=9)),
-                angularaxis=dict(gridcolor='rgba(148,163,184,0.06)', tickfont=dict(color='#94a3b8', size=11))
+                bgcolor='rgba(6,13,31,0.01)',
+                radialaxis=dict(visible=True, range=[0, 180], gridcolor='rgba(148,163,184,0.04)',
+                                tickfont=dict(color='#334155', size=9)),
+                angularaxis=dict(gridcolor='rgba(148,163,184,0.04)', tickfont=dict(color='#64748b', size=11))
             ),
             showlegend=True,
-            legend=dict(bgcolor='rgba(20,30,50,0.7)', bordercolor='rgba(148,163,184,0.1)',
+            legend=dict(bgcolor='rgba(12,20,42,0.7)', bordercolor='rgba(148,163,184,0.08)',
                         borderwidth=1, font=dict(color='#e2e8f0', size=11)),
             paper_bgcolor='rgba(0,0,0,0)',
             font=dict(color='#e2e8f0', family='Inter'),
@@ -260,11 +244,10 @@ def render_dashboard():
     with radar_col2:
         st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
         st.markdown("""
-        <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-             border-radius:10px; padding:1.1rem; font-size:0.85rem; line-height:1.8; color:#94a3b8;">
+        <div class="glass-card" style="font-size:0.85rem; line-height:1.8; color:#64748b; padding:1.1rem;">
             <b style="color:#e2e8f0;">How to Read:</b><br><br>
-            <b style="color:#10b981;">Green Area</b> — Healthy baseline<br><br>
-            <b style="color:#38bdf8;">Blue Area</b> — Patient profile<br><br>
+            <b style="color:#34d399;">Green Area</b> — Healthy baseline<br><br>
+            <b style="color:#a78bfa;">Violet Area</b> — Patient profile<br><br>
             Values exceeding the green boundary indicate clinical deviations.<br><br>
             <i>Larger deviations → higher contribution to risk score.</i>
         </div>
@@ -272,13 +255,8 @@ def render_dashboard():
 
     # ── SHAP ──
     st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
-    st.markdown("""
-    <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-         margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        AI Interpretability — SHAP Analysis
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("<p style='color:#64748b; font-size:0.85rem; margin-bottom:0.8rem;'>The SHAP waterfall chart reveals which clinical features drive the risk prediction.</p>", unsafe_allow_html=True)
+    st.markdown("""<div class="section-header">AI Interpretability — SHAP Analysis</div>""", unsafe_allow_html=True)
+    st.markdown("<p style='color:#475569; font-size:0.85rem; margin-bottom:0.8rem;'>The SHAP waterfall chart reveals which clinical features drive the risk prediction.</p>", unsafe_allow_html=True)
 
     try:
         explainer = shap.Explainer(model)
@@ -287,9 +265,9 @@ def render_dashboard():
         shap_col1, shap_col2 = st.columns([2, 1])
         with shap_col1:
             matplotlib.rcParams.update({
-                'text.color': '#94a3b8', 'axes.labelcolor': '#64748b',
-                'xtick.color': '#475569', 'ytick.color': '#475569',
-                'axes.edgecolor': (1, 1, 1, 0.06)
+                'text.color': '#64748b', 'axes.labelcolor': '#475569',
+                'xtick.color': '#334155', 'ytick.color': '#334155',
+                'axes.edgecolor': (1, 1, 1, 0.04)
             })
             fig_s, ax = plt.subplots(figsize=(9, 4.5))
             fig_s.patch.set_facecolor('none')
@@ -300,8 +278,7 @@ def render_dashboard():
 
         with shap_col2:
             st.markdown("""
-            <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-                 border-radius:10px; padding:1.1rem; font-size:0.84rem; line-height:1.8; color:#94a3b8; margin-top:0.5rem;">
+            <div class="glass-card" style="font-size:0.84rem; line-height:1.8; color:#64748b; margin-top:0.5rem; padding:1.1rem;">
                 <b style="color:#e2e8f0;">Reading the Chart:</b><br><br>
                 <b style="color:#ef4444;">Red Bars</b> — Increase risk<br><br>
                 <b style="color:#67e8f9;">Blue Bars</b> — Decrease risk<br><br>

@@ -5,17 +5,17 @@ from utils.db import get_user_predictions
 
 
 def render_history():
-    st.markdown("""<div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08); border-radius:12px; padding:1.5rem 2rem; margin-bottom:1.5rem;"><h1 style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:700; margin:0; color:#e2e8f0;">Assessment History</h1><p style="color:#64748b; font-size:0.85rem; margin:0.15rem 0 0;">Review, analyse, and export your past cardiac risk predictions</p></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="page-header"><h1>Assessment History</h1><p>Review, analyse, and export your past cardiac risk predictions</p></div>""", unsafe_allow_html=True)
 
     predictions = get_user_predictions(st.session_state.user_email)
 
     if not predictions:
         st.markdown("""
-        <div style="background:rgba(30,41,59,0.3); border:1px dashed rgba(148,163,184,0.15);
-             border-radius:12px; padding:3rem; text-align:center; margin-top:1rem;">
-            <div style="font-size:1.5rem; margin-bottom:0.8rem; color:#64748b;">—</div>
+        <div style="background:rgba(12,20,42,0.5); border:1px dashed rgba(148,163,184,0.1);
+             border-radius:16px; padding:3rem; text-align:center; margin-top:1rem;">
+            <div style="font-size:1.5rem; margin-bottom:0.8rem; color:#334155;">—</div>
             <div style="font-size:1rem; color:#e2e8f0; font-weight:600;">No Assessments Yet</div>
-            <div style="color:#64748b; margin-top:0.3rem;">Head to the Dashboard and save your first cardiac risk assessment.</div>
+            <div style="color:#475569; margin-top:0.3rem;">Head to the Dashboard and save your first cardiac risk assessment.</div>
         </div>
         """, unsafe_allow_html=True)
         return
@@ -31,22 +31,16 @@ def render_history():
         (sc3, f"{avg_prob:.1f}%", "Average Risk Score"),
     ]:
         col.markdown(f"""
-        <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.08);
-             border-radius:10px; padding:1.2rem; text-align:center;">
+        <div class="glass-card" style="text-align:center; padding:1.2rem;">
             <div style="font-size:1.8rem; font-weight:800; color:#e2e8f0; margin-top:0.2rem;">{val}</div>
-            <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
+            <div style="font-size:0.7rem; color:#475569; text-transform:uppercase; letter-spacing:0.8px; margin-top:0.2rem;">{label}</div>
         </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<div style='height:1.2rem;'></div>", unsafe_allow_html=True)
 
     # ── Risk trend chart ──
-    st.markdown("""
-    <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-         margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        Risk Score Trend
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="section-header">Risk Score Trend</div>""", unsafe_allow_html=True)
 
     dates = [p["timestamp"].strftime("%m/%d %H:%M") for p in reversed(predictions[-15:])]
     probas = [round(p["prediction_proba"], 1) for p in reversed(predictions[-15:])]
@@ -54,31 +48,26 @@ def render_history():
     fig_line = go.Figure()
     fig_line.add_trace(go.Scatter(
         x=dates, y=probas, mode='lines+markers',
-        line=dict(color='#0ea5e9', width=2.5, shape='spline'),
-        marker=dict(size=8, color=probas, colorscale=[[0, '#10b981'], [0.5, '#f59e0b'], [1, '#ef4444']],
-                    line=dict(color='#0b1120', width=1.5)),
-        fill='tozeroy', fillcolor='rgba(14,165,233,0.07)', name='Risk %'
+        line=dict(color='#a78bfa', width=2.5, shape='spline'),
+        marker=dict(size=8, color=probas, colorscale=[[0, '#34d399'], [0.5, '#fbbf24'], [1, '#ef4444']],
+                    line=dict(color='#060d1f', width=1.5)),
+        fill='tozeroy', fillcolor='rgba(139,92,246,0.06)', name='Risk %'
     ))
-    fig_line.add_hline(y=50, line_dash="dot", line_color="rgba(239,68,68,0.4)",
+    fig_line.add_hline(y=50, line_dash="dot", line_color="rgba(239,68,68,0.35)",
                        annotation_text="Risk Threshold (50%)",
                        annotation_font_color="#ef4444", annotation_font_size=10)
     fig_line.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(255,255,255,0.01)',
-        font=dict(color='#94a3b8', family='Inter'),
-        xaxis=dict(gridcolor='rgba(148,163,184,0.04)', tickfont=dict(size=10)),
-        yaxis=dict(gridcolor='rgba(148,163,184,0.04)', range=[0, 105],
+        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(255,255,255,0.005)',
+        font=dict(color='#64748b', family='Inter'),
+        xaxis=dict(gridcolor='rgba(148,163,184,0.03)', tickfont=dict(size=10)),
+        yaxis=dict(gridcolor='rgba(148,163,184,0.03)', range=[0, 105],
                    title='Risk (%)', tickfont=dict(size=10)),
         margin=dict(l=10, r=10, t=20, b=10), height=250
     )
     st.plotly_chart(fig_line, use_container_width=True)
 
     # ── History table ──
-    st.markdown("""
-    <div style="font-family:'Sora',sans-serif; font-weight:600; font-size:0.9rem; color:#94a3b8;
-         margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(148,163,184,0.1);">
-        Assessment Log
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="section-header">Assessment Log</div>""", unsafe_allow_html=True)
 
     history_rows = []
     for p in predictions:
