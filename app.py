@@ -4,17 +4,17 @@ st.set_page_config(page_title="HeartGuard AI", page_icon=None, layout="wide", in
 
 from utils.logo import logo_img_tag
 
-# ── Global Theme ──
+# â”€â”€ Global Theme â”€â”€
 st.markdown("""
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════
-   HEARTGUARD AI — AURORA PREMIUM THEME
-   Midnight base · Emerald/Violet accents
-   Glassmorphism · Animated orbs
-   ═══════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HEARTGUARD AI â€” AURORA PREMIUM THEME
+   Midnight base Â· Emerald/Violet accents
+   Glassmorphism Â· Animated orbs
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -83,7 +83,7 @@ html, body, [class*="css"] {
   background: linear-gradient(180deg, rgba(52,211,153,0.5), rgba(139,92,246,0.5));
 }
 
-/* ── Top Nav Bar ── */
+/* â”€â”€ Top Nav Bar â”€â”€ */
 .hg-topnav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -171,7 +171,7 @@ html, body, [class*="css"] {
   animation: pageFadeIn 0.6s ease-out both;
 }
 
-/* ── Sidebar ── */
+/* â”€â”€ Sidebar â”€â”€ */
 [data-testid="stSidebar"] {
   background: rgba(6,13,31,0.97) !important;
   border-right: 1px solid rgba(148,163,184,0.05) !important;
@@ -183,7 +183,7 @@ html, body, [class*="css"] {
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span { color: #cbd5e1 !important; }
 
-/* ── Doc-style sidebar radio nav ── */
+/* â”€â”€ Doc-style sidebar radio nav â”€â”€ */
 [data-testid="stSidebar"] .stRadio > label { display: none !important; }
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
   gap: 0 !important;
@@ -219,7 +219,7 @@ html, body, [class*="css"] {
   display: none !important;
 }
 
-/* ── Sidebar radio section GROUP LABELS ── */
+/* â”€â”€ Sidebar radio section GROUP LABELS â”€â”€ */
 [data-testid="stSidebar"] .stRadio > label {
   font-size: 0.68rem !important;
   font-weight: 700 !important;
@@ -249,7 +249,7 @@ html, body, [class*="css"] {
   border-radius: 10px !important;
 }
 
-/* ── Inputs ── */
+/* â”€â”€ Inputs â”€â”€ */
 input[type="text"], input[type="email"], input[type="password"],
 [data-baseweb="input"] input, [data-baseweb="base-input"] input {
   background: rgba(10,18,36,0.9) !important;
@@ -278,7 +278,7 @@ textarea::placeholder {
 [data-baseweb="base-input"] > div { background: rgba(10,18,36,0.9) !important; }
 [data-testid="InputInstructions"] { display: none !important; }
 
-/* ── Forms ── */
+/* â”€â”€ Forms â”€â”€ */
 div[data-testid="stForm"] {
   background: transparent !important;
   border-radius: 0 !important;
@@ -322,7 +322,7 @@ div[data-baseweb="input"] button:hover,
   background: rgba(52,211,153,0.08) !important;
 }
 
-/* ── Buttons ── */
+/* â”€â”€ Buttons â”€â”€ */
 .stButton > button {
   background: linear-gradient(135deg, #10b981, #34d399) !important;
   color: #071020 !important; border: none !important;
@@ -346,7 +346,7 @@ div[data-baseweb="input"] button:hover,
   box-shadow: 0 4px 16px rgba(5,150,105,0.3) !important;
 }
 
-/* ── Tabs ── */
+/* â”€â”€ Tabs â”€â”€ */
 .stTabs [data-baseweb="tab-list"] {
   background: rgba(15,23,42,0.7) !important;
   border-radius: 12px !important;
@@ -363,7 +363,7 @@ div[data-baseweb="input"] button:hover,
   color: #34d399 !important; font-weight: 600 !important;
 }
 
-/* ── Multiselect tags ── */
+/* â”€â”€ Multiselect tags â”€â”€ */
 [data-baseweb="tag"] {
   background: rgba(52,211,153,0.08) !important;
   border: 1px solid rgba(52,211,153,0.2) !important;
@@ -371,7 +371,7 @@ div[data-baseweb="input"] button:hover,
 }
 [data-baseweb="tag"] span { color: #6ee7b7 !important; font-size: 0.8rem !important; }
 
-/* ── Misc ── */
+/* â”€â”€ Misc â”€â”€ */
 .stAlert { border-radius: 10px !important; }
 .stDataFrame { border-radius: 10px !important; overflow: hidden !important; }
 [data-testid="stDataFrameContainer"] {
@@ -385,7 +385,7 @@ div[data-baseweb="input"] button:hover,
   border-radius: 12px !important;
 }
 
-/* ── Glass card utility ── */
+/* â”€â”€ Glass card utility â”€â”€ */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -438,7 +438,7 @@ div[data-baseweb="input"] button:hover,
   color: #475569; font-size: 0.85rem; margin: 0.2rem 0 0;
 }
 
-/* ── Animations ── */
+/* â”€â”€ Animations â”€â”€ */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -475,7 +475,7 @@ div[data-baseweb="input"] button:hover,
 </style>
 """, unsafe_allow_html=True)
 
-# ── Top Navigation Bar ──
+# â”€â”€ Top Navigation Bar â”€â”€
 _logo_nav = logo_img_tag(width=28, style="margin:0; border-radius:6px; flex-shrink:0;")
 st.markdown(f"""
 <div class="hg-topnav">
@@ -504,7 +504,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Auth imports ──
+# â”€â”€ Auth imports â”€â”€
 from utils.auth import login_user, signup_user, restore_session_from_cookie, get_cookie_manager
 
 # Cookie manager MUST be instantiated at the top level (not inside functions)
@@ -516,7 +516,7 @@ for key, default in [('logged_in', False), ('user', None), ('user_email', None)]
     if key not in st.session_state:
         st.session_state[key] = default
 
-# ── Restore session from cookie on refresh ──
+# â”€â”€ Restore session from cookie on refresh â”€â”€
 restore_session_from_cookie()
 
 
@@ -525,349 +525,306 @@ def auth_page():
     st.markdown("""<style>
     [data-testid="stSidebar"] { display: none !important; }
 
+    /* ── Auth-page centering ── */
+    .stMainBlockContainer, [data-testid="stMainBlockContainer"] {
+      max-width: 1100px !important;
+      margin: 0 auto !important;
+    }
+
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(28px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
     @keyframes slideInLeft {
-      from { opacity:0; transform:translateX(-36px); }
+      from { opacity:0; transform:translateX(-30px); }
       to   { opacity:1; transform:translateX(0); }
     }
     @keyframes slideInRight {
-      from { opacity:0; transform:translateX(36px); }
+      from { opacity:0; transform:translateX(30px); }
       to   { opacity:1; transform:translateX(0); }
     }
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-14px); }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(25px, -35px) scale(1.08); }
+      66% { transform: translate(-20px, 15px) scale(0.94); }
     }
     @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position:  200% center; }
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-    /* ── Brand hero (left) ── */
+    /* ── Hero header (centered above the columns) ── */
+    .auth-hero {
+      position: relative;
+      text-align: center;
+      padding: 1.2rem 1rem 1rem;
+      animation: slideUp 0.65s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .auth-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(52,211,153,0.06) 0%, rgba(139,92,246,0.04) 40%, transparent 70%);
+      border-radius: 50%;
+      animation: floatOrb 14s ease-in-out infinite;
+      pointer-events: none; z-index: 0;
+    }
+    .auth-hero-content { position: relative; z-index: 1; }
+    .auth-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem; font-weight: 800; color: #ffffff;
+      line-height: 1.15; margin: 0.5rem 0 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .auth-hero h1 .grad-text {
+      background: linear-gradient(135deg, #34d399 0%, #a78bfa 50%, #38bdf8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shimmer 5s linear infinite;
+    }
+    .auth-hero-sub {
+      color: rgba(148,163,184,0.7); font-size: 0.9rem;
+      line-height: 1.6; margin: 0 auto 0.8rem; max-width: 460px;
+    }
+    .auth-features {
+      display: flex; justify-content: center; gap: 0.4rem;
+      flex-wrap: wrap; margin-bottom: 0;
+    }
+    .auth-feat-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.08);
+      border-radius: 100px;
+      padding: 0.38rem 0.85rem;
+      font-size: 0.76rem; color: #94a3b8; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .auth-feat-badge:hover {
+      border-color: rgba(52,211,153,0.2);
+      color: #e2e8f0;
+      background: rgba(20,30,55,0.8);
+    }
+    .auth-feat-badge svg { flex-shrink: 0; }
+
+    /* ── Brand hero (left panel) ── */
     .brand-hero {
       position: relative;
       background: linear-gradient(150deg, #04091a 0%, #0a1628 40%, #081220 70%, #060e1c 100%);
-      border: 1px solid rgba(52,211,153,0.1);
+      border: 1px solid rgba(52,211,153,0.08);
       border-radius: 20px;
-      padding: 2.8rem 2.2rem;
-      min-height: 560px;
+      padding: 2rem 1.8rem;
       overflow: hidden;
-      animation: slideInLeft 0.65s cubic-bezier(0.16,1,0.3,1) both;
+      animation: slideInLeft 0.65s cubic-bezier(0.16,1,0.3,1) 0.12s both;
+      height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    /* Gradient glow at top */
     .brand-hero::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(52,211,153,0.35), rgba(139,92,246,0.35), transparent);
+      background: linear-gradient(90deg, transparent, rgba(52,211,153,0.3), rgba(139,92,246,0.3), transparent);
     }
-    /* Glow orb */
     .brand-hero::after {
       content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 280px; height: 280px;
-      background: radial-gradient(circle, rgba(52,211,153,0.07) 0%, rgba(139,92,246,0.04) 40%, transparent 70%);
+      position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
       border-radius: 50%;
-      animation: float 10s ease-in-out infinite;
+      pointer-events: none;
     }
-
     .brand-content { position: relative; z-index: 1; }
-
-    .brand-content h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.18;
-      margin: 0 0 1rem;
+    .svc-card {
+      background: rgba(15,23,42,0.6); border: 1px solid rgba(148,163,184,0.06);
+      border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.6rem;
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      transition: all 0.2s ease;
     }
-    .brand-content h1 .grad-text {
-      background: linear-gradient(135deg, #34d399, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .svc-card:hover {
+      border-color: rgba(52,211,153,0.15); background: rgba(20,30,55,0.7);
+      transform: translateX(4px);
     }
-    .brand-desc {
-      color: rgba(148,163,184,0.75);
-      font-size: 0.97rem;
-      line-height: 1.75;
-      margin-bottom: 2rem;
-      max-width: 360px;
+    .svc-icon {
+      width: 38px; height: 38px; flex-shrink: 0; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
     }
-
-    @keyframes ecgLoop {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes heartPulse {
-      0%,100% { transform: scale(1);   filter: drop-shadow(0 0 6px rgba(239,68,68,0.4)); }
-      50%     { transform: scale(1.18); filter: drop-shadow(0 0 16px rgba(239,68,68,0.85)); }
-    }
-    @keyframes dotBlink {
-      0%,100% { opacity:1; } 50% { opacity:0.2; }
+    .svc-title { font-weight: 700; font-size: 0.84rem; color: #e2e8f0; margin-bottom: 0.1rem; }
+    .svc-desc { font-size: 0.75rem; color: #64748b; line-height: 1.5; }
+    .brand-footer {
+      color: rgba(100,116,139,0.4); font-size: 0.7rem; line-height: 1.8;
+      margin-top: 1.2rem; text-align: center;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(148,163,184,0.05);
     }
 
-    /* ── ECG Monitor Panel ── */
-    .ecg-panel {
-      background: rgba(4,9,20,0.9);
-      border: 1px solid rgba(52,211,153,0.1);
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 1.8rem;
-      animation: slideInLeft 0.8s cubic-bezier(0.16,1,0.3,1) 0.15s both;
-    }
-    .ecg-header {
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(8,16,36,0.9);
-      border-bottom: 1px solid rgba(52,211,153,0.06);
-      padding: 0.5rem 0.9rem;
-    }
-    .ecg-header-left { display: flex; align-items: center; gap: 0.5rem; }
-    .ecg-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #ef4444;
-      animation: dotBlink 1.2s ease-in-out infinite;
-    }
-    .ecg-label {
-      font-size: 0.72rem; font-weight: 600;
-      color: #475569; letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .ecg-bpm {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.1rem; font-weight: 800;
-      color: #34d399;
-      letter-spacing: -0.01em;
-    }
-    .ecg-bpm-label { font-size: 0.62rem; color: #334155; margin-left: 0.2rem; }
-    .ecg-canvas-wrap {
-      overflow: hidden;
-      height: 80px;
-      position: relative;
-      background:
-        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(52,211,153,0.03) 20px),
-        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(52,211,153,0.03) 20px);
-    }
-    .ecg-svg-track {
-      display: flex;
-      width: 200%;
-      height: 80px;
-      animation: ecgLoop 3.2s linear infinite;
-    }
-    .ecg-svg-track svg { flex-shrink: 0; }
-    .ecg-vitals {
-      display: flex; gap: 0; border-top: 1px solid rgba(52,211,153,0.05);
-    }
-    .ecg-vital {
-      flex: 1; padding: 0.5rem 0.65rem;
-      border-right: 1px solid rgba(52,211,153,0.05);
-      text-align: center;
-    }
-    .ecg-vital:last-child { border-right: none; }
-    .ecg-vital-val {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.92rem; font-weight: 700;
-      color: #e2e8f0;
-    }
-    .ecg-vital-key {
-      font-size: 0.6rem; color: #334155;
-      text-transform: uppercase; letter-spacing: 0.07em;
-      margin-top: 0.1rem;
-    }
-    .ecg-status-ok  { color: #34d399 !important; }
-    .ecg-status-warn { color: #fbbf24 !important; }
-    .ecg-heart {
-      font-size: 1rem;
-      display: inline-block;
-      animation: heartPulse 0.85s ease-in-out infinite;
-      color: #ef4444;
-    }
-
-    /* Stats row */
-    .stat-row { display: flex; gap: 0.75rem; margin-bottom: 1.8rem; }
-    .stat-box {
-      flex: 1;
-      background: linear-gradient(135deg, rgba(52,211,153,0.05), rgba(139,92,246,0.03));
-      border: 1px solid rgba(52,211,153,0.1);
-      border-radius: 12px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.5rem; font-weight: 800;
-      color: #ffffff; display: block;
-    }
-    .stat-label {
-      color: rgba(100,116,139,0.8);
-      font-size: 0.68rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 1px;
-      margin-top: 0.2rem; display: block;
-    }
-    .shimmer-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(52,211,153,0.25), rgba(139,92,246,0.25), transparent);
-      background-size: 200% 100%;
-      animation: shimmer 4s linear infinite;
-      margin: 1.2rem 0;
-    }
-    .brand-footer { color: rgba(100,116,139,0.5); font-size: 0.72rem; line-height: 1.8; }
-
-    /* ── Auth card (right) ── */
+    /* ── Auth card (right panel) ── */
     .auth-card {
-      position: relative;
-      background: rgba(8,14,30,0.92);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(148,163,184,0.07);
-      border-radius: 20px;
-      padding: 2.4rem 2rem 2rem;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 80px rgba(52,211,153,0.03);
-      animation: slideInRight 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+      position: relative; background: rgba(8,14,30,0.92);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(148,163,184,0.07); border-radius: 20px;
+      padding: 2rem 1.8rem 1.6rem;
+      box-shadow:
+        0 24px 64px rgba(0,0,0,0.45),
+        0 0 80px rgba(52,211,153,0.03),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+      animation: slideInRight 0.65s cubic-bezier(0.16,1,0.3,1) 0.18s both;
     }
     .auth-card::before {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: 0; left: 40px; right: 40px; height: 1px;
       background: linear-gradient(90deg, transparent, rgba(52,211,153,0.25), rgba(139,92,246,0.25), transparent);
     }
-    .auth-card label,
-    .auth-card [data-testid="stForm"] label {
-      color: #94a3b8 !important; font-weight: 600 !important; font-size: 0.88rem !important;
+    .auth-card label, .auth-card [data-testid="stForm"] label {
+      color: #94a3b8 !important; font-weight: 600 !important; font-size: 0.85rem !important;
     }
-    .auth-footer { text-align:center; margin-top:1.1rem; color:#64748b; font-size:0.84rem; }
+    .auth-heading {
+      text-align: center; margin-bottom: 1.2rem;
+    }
+    .auth-heading h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f8fafc; font-size: 1.5rem; font-weight: 700;
+      margin: 0 0 0.3rem;
+    }
+    .auth-heading p {
+      color: #64748b; font-size: 0.88rem; margin: 0; line-height: 1.6;
+    }
+    .auth-footer { text-align:center; margin-top:0.9rem; color:#64748b; font-size: 0.82rem; }
     .auth-footer b { color: #34d399; }
+    .clerk-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.12);
+      border-radius: 8px; padding: 0.22rem 0.55rem;
+      font-size: 0.68rem; color: #34d399; font-weight: 600;
+    }
+    .auth-top-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.6rem; margin-bottom: 1rem;
+    }
     </style>""", unsafe_allow_html=True)
 
-    left_col, gap, right_col = st.columns([1.15, 0.05, 1])
-
-    with left_col:
-        logo_tag = logo_img_tag(width=140, style="margin:0 0 1.6rem;")
-        st.markdown(f"""<div class="brand-hero">
-<div class="brand-content">
-
-{logo_tag}
-
-<h1>Smarter<br><span class="grad-text">Heart Health</span><br>Starts Here.</h1>
-
-<p class="brand-desc">
+    # ── Centered hero header ──
+    logo_hero = logo_img_tag(width=52, style="margin:0 auto; display:block; border-radius:12px;")
+    st.markdown(f"""<div class="auth-hero">
+<div class="auth-hero-content">
+{logo_hero}
+<h1>Smarter <span class="grad-text">Heart Health</span><br>Starts Here.</h1>
+<p class="auth-hero-sub">
 AI-driven cardiac risk assessment with transparent,
 explainable predictions you can trust and act on.
 </p>
+<div class="auth-features">
+  <span class="auth-feat-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    AI Risk Engine
+  </span>
+  <span class="auth-feat-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+    SHAP Explainability
+  </span>
+  <span class="auth-feat-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    Doctor Connect
+  </span>
+  <span class="auth-feat-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Clerk Secured
+  </span>
+</div>
+</div>
+</div>""", unsafe_allow_html=True)
 
-<div class="ecg-panel">
-  <div class="ecg-header">
-    <div class="ecg-header-left">
-      <span class="ecg-dot"></span>
-      <span class="ecg-label">Live Cardiac Monitor</span>
-    </div>
-    <div>
-      <span class="ecg-heart">&#10084;</span>
-      <span class="ecg-bpm">72</span>
-      <span class="ecg-bpm-label">BPM</span>
-    </div>
+    # ── Two-column: services left, auth right ──
+    left_col, right_col = st.columns([1, 1.05], gap="medium")
+
+    with left_col:
+        st.markdown(f"""<div class="brand-hero">
+<div class="brand-content">
+<div class="svc-card">
+  <div class="svc-icon" style="background:rgba(52,211,153,0.1); color:#34d399;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
   </div>
-  <div class="ecg-canvas-wrap">
-    <div class="ecg-svg-track">
-      <svg width="600" height="80" viewBox="0 0 600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polyline
-          points="0,40 30,40 45,40 50,38 55,40 70,40 80,40 90,20 95,5 100,65 105,15 110,40 130,40 150,40 160,38 165,40 180,40 190,40 200,20 205,5 210,65 215,15 220,40 240,40 260,40 270,38 275,40 290,40 300,40 310,20 315,5 320,65 325,15 330,40 350,40 370,40 380,38 385,40 400,40 410,40 420,20 425,5 430,65 435,15 440,40 460,40 480,40 490,38 495,40 510,40 520,40 530,20 535,5 540,65 545,15 550,40 570,40 590,40 600,40"
-          stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-          fill="none"
-        />
-      </svg>
-      <svg width="600" height="80" viewBox="0 0 600 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polyline
-          points="0,40 30,40 45,40 50,38 55,40 70,40 80,40 90,20 95,5 100,65 105,15 110,40 130,40 150,40 160,38 165,40 180,40 190,40 200,20 205,5 210,65 215,15 220,40 240,40 260,40 270,38 275,40 290,40 300,40 310,20 315,5 320,65 325,15 330,40 350,40 370,40 380,38 385,40 400,40 410,40 420,20 425,5 430,65 435,15 440,40 460,40 480,40 490,38 495,40 510,40 520,40 530,20 535,5 540,65 545,15 550,40 570,40 590,40 600,40"
-          stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-          fill="none"
-        />
-      </svg>
-    </div>
-  </div>
-  <div class="ecg-vitals">
-    <div class="ecg-vital">
-      <div class="ecg-vital-val ecg-status-ok">118/76</div>
-      <div class="ecg-vital-key">BP mmHg</div>
-    </div>
-    <div class="ecg-vital">
-      <div class="ecg-vital-val ecg-status-warn">210</div>
-      <div class="ecg-vital-key">Chol mg/dl</div>
-    </div>
-    <div class="ecg-vital">
-      <div class="ecg-vital-val ecg-status-ok">98%</div>
-      <div class="ecg-vital-key">SpO&#8322;</div>
-    </div>
-    <div class="ecg-vital">
-      <div class="ecg-vital-val ecg-status-ok">36.6&#176;</div>
-      <div class="ecg-vital-key">Temp</div>
-    </div>
+  <div>
+    <div class="svc-title">AI Risk Assessment</div>
+    <div class="svc-desc">XGBoost ML model trained on 920+ clinical records for accurate cardiac risk prediction</div>
   </div>
 </div>
-
-<div class="stat-row">
-  <div class="stat-box">
-    <span class="stat-num">84%</span>
-    <span class="stat-label">Accuracy</span>
+<div class="svc-card">
+  <div class="svc-icon" style="background:rgba(139,92,246,0.1); color:#a78bfa;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
   </div>
-  <div class="stat-box">
-    <span class="stat-num">13</span>
-    <span class="stat-label">Risk Factors</span>
-  </div>
-  <div class="stat-box">
-    <span class="stat-num">SHAP</span>
-    <span class="stat-label">Explainable</span>
+  <div>
+    <div class="svc-title">SHAP Explainability</div>
+    <div class="svc-desc">Transparent, interpretable AI decisions &mdash; see exactly which factors drive your risk</div>
   </div>
 </div>
-
-<div class="shimmer-line"></div>
+<div class="svc-card">
+  <div class="svc-icon" style="background:rgba(14,165,233,0.1); color:#38bdf8;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  </div>
+  <div>
+    <div class="svc-title">Doctor Connect</div>
+    <div class="svc-desc">Find and book cardiologists instantly &mdash; get personalised doctor notes and follow-ups</div>
+  </div>
+</div>
+<div class="svc-card">
+  <div class="svc-icon" style="background:rgba(251,191,36,0.1); color:#fbbf24;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+  </div>
+  <div>
+    <div class="svc-title">Smart Health Profile</div>
+    <div class="svc-desc">Persistent health records with BMI tracking, lifestyle analysis, and personalised insights</div>
+  </div>
+</div>
 <p class="brand-footer">XGBoost ML &middot; SHAP Interpretability &middot; Real-time Analysis<br>For educational &amp; research purposes</p>
-
 </div>
 </div>""", unsafe_allow_html=True)
 
     with right_col:
-        st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
-        logo_sm = logo_img_tag(width=90, style="margin:0 auto;")
-        st.markdown(f"""<div style="text-align:center; margin-bottom:1rem;">{logo_sm}</div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="auth-top-bar">
+            <span class="clerk-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Secured by Clerk
+            </span>
+        </div>""", unsafe_allow_html=True)
         st.markdown('<div class="auth-card">', unsafe_allow_html=True)
 
         tab1, tab2 = st.tabs(["  Sign In  ", "  Create Account  "])
 
         with tab1:
-            st.markdown("""<div style="margin:0.4rem 0 1.3rem; text-align:center;">
-<h3 style="font-family:'Plus Jakarta Sans',sans-serif; color:#f8fafc; font-size:1.65rem; font-weight:700; margin:0 0 0.4rem;">Welcome Back</h3>
-<p style="color:#64748b; font-size:0.93rem; margin:0; line-height:1.6;">Sign in to access your health dashboard</p>
+            st.markdown("""<div class="auth-heading">
+<h3>Welcome Back</h3>
+<p>Sign in to access your health dashboard</p>
 </div>""", unsafe_allow_html=True)
             with st.form("login_form"):
                 login_email    = st.text_input("Email Address", placeholder="you@example.com")
                 login_password = st.text_input("Password", type="password", placeholder="Enter your password")
                 st.markdown("<div style='height:0.3rem;'></div>", unsafe_allow_html=True)
-                submit_login   = st.form_submit_button("Sign In  →", use_container_width=True)
+                submit_login   = st.form_submit_button("Sign In  \u2192", use_container_width=True)
                 if submit_login:
                     if login_email and login_password:
-                        if login_user(login_email, login_password):
+                        success, msg = login_user(login_email, login_password)
+                        if success:
                             st.rerun()
                         else:
-                            st.error("Invalid email or password. Please try again.")
+                            st.error(msg)
                     else:
                         st.warning("Please enter both email and password.")
             st.markdown("""<p class="auth-footer">Don't have an account? Switch to <b>Create Account</b> above.</p>""", unsafe_allow_html=True)
 
         with tab2:
-            st.markdown("""<div style="margin:0.4rem 0 1.3rem; text-align:center;">
-<h3 style="font-family:'Plus Jakarta Sans',sans-serif; color:#f8fafc; font-size:1.65rem; font-weight:700; margin:0 0 0.4rem;">Create Account</h3>
-<p style="color:#64748b; font-size:0.93rem; margin:0; line-height:1.6;">Join and start monitoring your cardiac health</p>
+            st.markdown("""<div class="auth-heading">
+<h3>Create Account</h3>
+<p>Join and start monitoring your cardiac health</p>
 </div>""", unsafe_allow_html=True)
             with st.form("signup_form"):
                 signup_name  = st.text_input("Full Name", placeholder="Dr. Jane Smith")
                 signup_email = st.text_input("Email Address", placeholder="jane@hospital.com")
                 c_a, c_b = st.columns(2)
                 with c_a:
-                    signup_password = st.text_input("Password", type="password", placeholder="Create password")
+                    signup_password = st.text_input("Password", type="password", placeholder="Min 8 characters")
                 with c_b:
                     signup_confirm  = st.text_input("Confirm Password", type="password", placeholder="Confirm password")
                 st.markdown("<div style='height:0.3rem;'></div>", unsafe_allow_html=True)
-                submit_signup = st.form_submit_button("Create Account  →", use_container_width=True)
+                submit_signup = st.form_submit_button("Create Account  \u2192", use_container_width=True)
                 if submit_signup:
                     if signup_name and signup_email and signup_password and signup_confirm:
                         success, msg = signup_user(signup_name, signup_email, signup_password, signup_confirm)
@@ -880,7 +837,6 @@ explainable predictions you can trust and act on.
             st.markdown("""<p class="auth-footer">Already have an account? Switch to <b>Sign In</b> above.</p>""", unsafe_allow_html=True)
 
         st.markdown("</div>", unsafe_allow_html=True)
-
 
 if st.session_state.logged_in:
     from views.dashboard import render_dashboard
@@ -899,7 +855,7 @@ if st.session_state.logged_in:
     unread = count_unread_notes(st.session_state.user_email)
     updates_label = f"My Updates{' (!)' if unread > 0 else ''}"
 
-    # ── Sidebar ──
+    # â”€â”€ Sidebar â”€â”€
     st.sidebar.markdown(f"""
     <div style="text-align:center; padding:0.7rem 0 0.3rem;">
         {logo_img_tag(width=120, style="margin:0 auto;")}
@@ -921,7 +877,7 @@ if st.session_state.logged_in:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── 3-group nav: track which group is active via session state ──
+    # â”€â”€ 3-group nav: track which group is active via session state â”€â”€
     if "_nav_section" not in st.session_state:
         st.session_state["_nav_section"] = 1  # 1=getting_started, 2=core, 3=account
 
@@ -990,7 +946,7 @@ if st.session_state.logged_in:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Route pages ──
+    # â”€â”€ Route pages â”€â”€
     if page == "Dashboard":
         render_dashboard()
     elif page == "My Health Profile":

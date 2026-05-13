@@ -1,6 +1,5 @@
 import streamlit as st
-import bcrypt
-from utils.db import get_users_collection
+from utils.clerk_auth import clerk_signin, clerk_signup
 
 _COOKIE_NAME = "hg_session_email"
 _COOKIE_EXPIRY_DAYS = 30
@@ -18,13 +17,13 @@ def _get_cm():
 
 
 def login_user(email, password):
-    users_collection = get_users_collection()
-    user = users_collection.find_one({"email": email})
-    if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
+    """Authenticate via Clerk and set session state."""
+    success, msg, user_data = clerk_signin(email, password)
+    if success and user_data:
         st.session_state.logged_in = True
-        st.session_state.user = user.get('name', email.split('@')[0])
-        st.session_state.user_email = email
-        # Persist login across refreshes via cookie
+        st.session_state.user = user_data["name"]
+        st.session_state.user_email = user_data["email"]
+        # Persist login via cookie
         try:
             from datetime import datetime, timedelta
             cm = _get_cm()
@@ -33,31 +32,25 @@ def login_user(email, password):
                        expires_at=datetime.now() + timedelta(days=_COOKIE_EXPIRY_DAYS))
         except Exception:
             pass
-        return True
-    return False
+        return True, msg
+    return False, msg
 
 
 def signup_user(name, email, password, confirm_password):
-    users_collection = get_users_collection()
+    """Create account via Clerk."""
     if password != confirm_password:
         return False, "Passwords do not match!"
-    if users_collection.find_one({"email": email}):
-        return False, "Email already registered."
+    if len(password) < 8:
+        return False, "Password must be at least 8 characters."
 
-    hashed_pw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-    users_collection.insert_one({
-        "name": name,
-        "email": email,
-        "password": hashed_pw
-    })
-    return True, "Account created successfully!"
+    success, msg, _ = clerk_signup(name, email, password)
+    return success, msg
 
 
 def logout():
     st.session_state.logged_in = False
     st.session_state.user = None
     st.session_state.user_email = None
-    # Clear the persistent cookie
     try:
         cm = _get_cm()
         if cm:
@@ -69,18 +62,27 @@ def logout():
 def restore_session_from_cookie():
     """Call once at app startup to auto-login from a saved cookie."""
     if st.session_state.get("logged_in"):
-        return  # already logged in
+        return
     try:
         cm = _get_cm()
         if not cm:
             return
         saved_email = cm.get(_COOKIE_NAME)
         if saved_email:
-            users_collection = get_users_collection()
-            user = users_collection.find_one({"email": saved_email})
-            if user:
-                st.session_state.logged_in = True
-                st.session_state.user = user.get('name', saved_email.split('@')[0])
-                st.session_state.user_email = saved_email
+            # We trust the cookie — Clerk already verified credentials at login time
+            st.session_state.logged_in = True
+            st.session_state.user_email = saved_email
+            # Try to get the name from Clerk
+            try:
+                from utils.clerk_auth import _get_clerk_client
+                clerk = _get_clerk_client()
+                users = list(clerk.users.list(email_address=[saved_email]))
+                if users:
+                    u = users[0]
+                    st.session_state.user = f"{u.first_name or ''} {u.last_name or ''}".strip() or saved_email.split("@")[0]
+                else:
+                    st.session_state.user = saved_email.split("@")[0]
+            except Exception:
+                st.session_state.user = saved_email.split("@")[0]
     except Exception:
         pass

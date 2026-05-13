@@ -11,5 +11,7 @@ plotly
 pymongo
 bcrypt
 extra-streamlit-components
+clerk-backend-api
+python-dotenv
 pytest
 flake8
